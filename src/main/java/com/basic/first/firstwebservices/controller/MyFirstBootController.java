@@ -1,6 +1,7 @@
 package com.basic.first.firstwebservices.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.basic.first.firstwebservices.model.User;
@@ -28,5 +29,20 @@ public class MyFirstBootController {
 	@GetMapping(value="/hello-user")
 	public User helloUser() {
 		return new User((long)23,"Jyoti","Singh","xyz@gmail.com","12345678"); 
+	}
+	
+	/**
+	 * Sending the firstName as a path variable and returning the the path variable name in user object.
+	 * @return Object
+	 */
+	@GetMapping(value="/hello-user-name/{firstName}")
+	public User helloUserByName(@PathVariable String firstName) {
+		User user=new User();
+		user.setUserId((long) 23);
+		user.setFirstName(firstName);
+		user.setLastName("LastName");
+		user.setEmail("xyz@gmail.com");
+		user.setPassword("12345678");
+		return user; 
 	}
 }
